@@ -1,7 +1,6 @@
 {
   "name": "crud-todo",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -18,5 +17,14 @@
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/christopher-yi/crud-todo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/christopher-yi/crud-todo/issues"
+  },
+  "homepage": "https://github.com/christopher-yi/crud-todo#readme",
+  "description": ""
 }
