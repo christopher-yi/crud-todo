@@ -19,6 +19,7 @@ mongoose.connect(process.env.DB_STRING,
     () => {console.log("Connected to db!");}
 )
 
+// Get Method
 app.get('/', async (req, res) => {
     try {
         TodoTask.find({}, (err, tasks) => {
@@ -28,5 +29,25 @@ app.get('/', async (req, res) => {
         if (err) return res.status(500).send(err)
     }
 })
+
+// Post Method
+app.post('/', async (req, res) => {
+    const todoTask = new TodoTask(
+        {
+            title: req.body.title,
+            content: req.body.content
+        }
+    )
+    try {
+        await todoTask.save()
+        console.log(todoTask)
+        res.redirect('/')
+    } catch(err) {
+        if(err) return res.status(500).send(err)
+        res.redirect('/')
+    }
+})
+
+// 2:47:33
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`))
