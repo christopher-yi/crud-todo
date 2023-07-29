@@ -15,17 +15,17 @@ app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}))
 
 mongoose.connect(process.env.DB_STRING, 
-    {useNewUrlParser: true})
-    .then(() => console.log('Connected to db!'))
-    .catch((err) => { console.error(err) })
+    { useNewUrlParser: true }, 
+    () => {console.log("Connected to db!");}
+)
 
-app.get('/', async (res, req) => {
+app.get('/', async (req, res) => {
     try {
         TodoTask.find({}, (err, tasks) => {
             res.render('index.ejs', {todoTasks: tasks})
         })
     } catch (err) {
-        if (err) return res.statusCode(500).send(err)
+        if (err) return res.status(500).send(err)
     }
 })
 
