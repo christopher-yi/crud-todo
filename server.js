@@ -8,6 +8,7 @@ const PORT = 8500
 const mongoose = require('mongoose')
 require('dotenv').config()
 const TodoTask = require('./models/todotask')
+const { reset } = require('nodemon')
 
 // Set middleware
 app.set('view engine', 'ejs')
@@ -23,7 +24,10 @@ mongoose.connect(process.env.DB_STRING,
 app.get('/', async (req, res) => {
     try {
         TodoTask.find({}, (err, tasks) => {
-            res.render('index.ejs', {todoTasks: tasks})
+            res.render('index.ejs', {
+                todoTasks: tasks
+            })
+            console.log(tasks)
         })
     } catch (err) {
         if (err) return res.status(500).send(err)
@@ -48,6 +52,31 @@ app.post('/', async (req, res) => {
     }
 })
 
-// 2:47:33
+// Update Method
+app
+    .route('/edit/:id')
+    .get((req, res) => {
+        const id = req.params.id
+        TodoTask.find({}, (err, tasks) => {
+            res.render('edit.ejs', {
+                todoTasks: tasks, idTask: id 
+            })
+        })
+    })
+    .post((req,res) => {
+        const id = req.params.id
+        TodoTask.findByIdAndUpdate(
+            id,
+            {
+                title: req.body.title,
+                content: req.body.content
+            },
+            err => {
+                if (err) return res.status(500).send(err)
+                res.redirect('/')
+
+            }
+        )
+    })
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`))
