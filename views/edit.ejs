@@ -24,7 +24,7 @@
                         <li class="todo-list-item">
                             <form action="/edit/<%= task._id %>" method="POST">
                                 <input type="text" name="title" value="<%= task.title %>">
-                                <textarea name="content" id="" cols="30" rows="10"><%= task.content %></textarea>
+                                <textarea name="content" id="" cols="60" rows="10"><%= task.content %></textarea>
                                 <button type="submit" class="confirm">Confirm</button>
                                 <a href="/" class="cancel"> Cancel</a>
                             </form>
