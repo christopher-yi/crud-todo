@@ -8,6 +8,10 @@ const todoTaskSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    completed: {
+        type: Boolean,
+        required: true
+    },
     date: {
         type: Date,
         default: Date.now

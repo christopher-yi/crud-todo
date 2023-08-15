@@ -39,7 +39,8 @@ app.post('/', async (req, res) => {
     const todoTask = new TodoTask(
         {
             title: req.body.title,
-            content: req.body.content
+            content: req.body.content,
+            completed: false
         }
     )
     try {

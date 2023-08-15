@@ -27,12 +27,21 @@
             <ul class="todo-list">
                 <% todoTasks.forEach(task => {%>
                 <li class="todo-list-item">
-                    <div class="todo-list-item-title">
-                        <%= task.title %>
-                    </div>
-                    <div class="todo-list-item-content">
-                        <%= task.content %>
-                    </div>
+                    <% if(task[i].completed === true) {%>
+                        <div class="todo-list-item-title completed">
+                            <%= task.title %>
+                        </div>
+                        <div class="todo-list-item-content completed">
+                            <%= task.content %>
+                        </div>
+                        <% } else { %>
+                            <div class="todo-list-item-title">
+                                <%= task.title %>
+                            </div>
+                            <div class="todo-list-item-content">
+                                <%= task.content %>
+                            </div>
+                        <% } %>
                     <a href="/edit/<%= task._id %>" class="edit">
                         <span class="fas fa-edit"></span></a>
                     <a href=""></a>
